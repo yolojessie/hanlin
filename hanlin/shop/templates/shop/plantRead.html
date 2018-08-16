@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-{% load staticfiles%}
+{% load staticfiles %}
 {% block css %}<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}"> {% endblock %}
 {% block content %}
 {% include 'main/messages.html' %}
@@ -7,7 +7,7 @@
 <ul>
     <li class="classheader">{{ branch.branchName }}</li>
 {% for p in plants %}    
-    <li><a href="{% url 'shop:plantRead' branch.id plant.id %}">{{ p.plantName }}</a></li>
+    <li><a href="{% url 'shop:plantRead' branch.id p.id %}">{{ p.plantName }}</a></li>
 {% endfor %}
   </ul>
 </aside>
