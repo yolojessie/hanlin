@@ -1,0 +1,50 @@
+/*aside*/
+aside {
+  float: left;
+  width:25%;
+}
+aside ul{
+  margin:0;
+  padding:0;
+}
+
+aside ul li{
+  border:0;
+  display:block;
+}
+
+aside li a{
+  color:#0093ff;
+}
+#contentRight {
+  width:75%;
+  float: right;
+}
+
+aside ul .classheader{
+  font-size: 2.5em;
+  font-weight:bold;
+  color:blue;
+}
+
+.classtitle {
+  font-size: 1.7em;
+  font-weight:bold;
+  color:#000000;
+}
+
+div #contentRight {
+  height: 100%;
+}
+div #contentRight .titleImg {
+  display: inline-block;
+  width: 40%;
+}
+div #contentRight .titleImg p{
+  padding:0;
+  margin:0;
+  font-size: 2em;
+}
+div #contentRight .titleImg img{
+  width: 100px;
+}

@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load staticfiles%}
+{% block css %}<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}"> {% endblock %}
+{% block content %}
+<aside>
+  <ul>
+    <li class="classheader">多肉種類</li>
+    <li><a class="classtitle" href="/">景天</a></li>
+    <li><a href="/">熊童子</a></li>
+    <li><a href="/">t002</a></li>
+    <li><a href="/">t003</a></li>
+  </ul>
+</aside>
+<div id="contentRight">
+  <div class="titleImg"><P>t001</P><img src="{% static 'main/img/hanlin.jpg' %}"></div> 
+  <div class="titleImg"><P>t002</P><img src="{% static 'main/img/hanlin.jpg' %}"></div> 
+  <div class="titleImg"><P>t003</P><img src="{% static 'main/img/hanlin.jpg' %}"></div> 
+  <div class="titleImg"><P>t004</P><img src="{% static 'main/img/hanlin.jpg' %}"></div> 
+</div>
+{% endblock %}

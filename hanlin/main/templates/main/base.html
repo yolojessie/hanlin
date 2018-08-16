@@ -1,0 +1,45 @@
+<!doctype html> 
+{% load staticfiles %}
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<link rel="stylesheet" href="{% static 'main/css/main5.css' %}"> 
+{% block css %}{% endblock %}
+</head> 
+<body> 
+
+<div id="wrapper">
+
+<header>
+<div id="headerBig">
+  <div id=headerLeft>
+  <img id="headerHanlin" src="{% static 'main/img/hanlin.jpg' %}">瀚霖園多肉植物
+  </div>
+</div>
+<hr>
+<nav>
+     {% include 'main/menu.html' %}
+  </nav>
+</header>
+
+<div id="headerHidden"></div>
+<div id="content">
+{% block content %}{% endblock %}
+</div>  <!-- content -->
+
+<hr>
+<footer>
+ <div id="footerright">
+  <img id="footerimg" src="{% static 'main/img/fb.png' %}">
+  <p>FB粉絲團</p>
+  </div>
+  <div id="footerleft">
+   <img id="footerimg" src="{% static 'main/img/hanlin.jpg' %}" href="https://www.facebook.com/groups/hanlinyuan6058/">
+    {% include 'main/menu.html' %}
+  </div>
+</footer>
+
+</div>  <!-- wrapper -->
+
+</body>
+</html>
