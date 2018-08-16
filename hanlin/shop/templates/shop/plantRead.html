@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load staticfiles%}
+{% block css %}<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}"> {% endblock %}
+{% block content %}
+{% include 'main/messages.html' %}
+<aside>
+<ul>
+    <li class="classheader">{{ branch.branchName }}</li>
+{% for p in plants %}    
+    <li><a href="{% url 'shop:plantRead' branch.id plant.id %}">{{ p.plantName }}</a></li>
+{% endfor %}
+  </ul>
+</aside>
+
+<div id="contentRight">
+    
+    <div id="bigplantImg"><img src="/static/main/img/{{ plant.url }}"></div>
+    <p>
+    <h3>{{ plant.plantName }}</h3>
+    $ {{ plant.price }}<br>
+    庫存 {{ plant.inventory }}<br>
+    編碼 {{ plant.code }}
+    </p>  
+</div>
+
+
+{% endblock %}

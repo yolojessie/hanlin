@@ -24,7 +24,7 @@ aside li a{
 aside ul .classheader{
   font-size: 2.5em;
   font-weight:bold;
-  color:blue;
+  color:#005baa;
 }
 
 .classtitle {
@@ -47,4 +47,36 @@ div #contentRight .titleImg p{
 }
 div #contentRight .titleImg img{
   width: 100px;
+}
+
+/*NewItemButton*/
+.newItem {
+  display: inline-block;
+  border: 4px solid #000003;
+  color: #005baa;
+  text-decoration: none;
+  font-size: 1.5em; 
+  padding: 20px 30px;
+  vertical-align: bottom;
+}
+
+
+#form{
+  text-align:center;
+}
+
+input[type=text] {
+  padding: 0.4em;
+}
+
+.plantImg {
+  width:20%;
+  display:inline-block;
+  vertical-align: top;
+}
+
+#bigplantImg {
+  float:left;
+  vetical-align:middle;
+  height:80%;
 }
