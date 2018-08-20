@@ -33,19 +33,31 @@ header #headerLeft{
   padding-top:0.4em;
    text-align: center;
 */
+  display:inline-block;
   padding: 0.5% 0.5%; 
   text-align: left;
   color:black;
   font-size: 2em;
   font-weight: bold;
   height: 100%;
+  width:50%;
+  float:left;
 }
+
+div #search{ 
+  display:inline-block;
+  float:left;
+  height: 100%;
+  width:50%;
+  text-align:left;
+} 
 
 header #headerLeft img{
   vertical-align: middle;
 }
 
 #headerBig {  
+  line-height:5em;
 }
 
 div #headerHidden{
@@ -56,6 +68,10 @@ img {
   width: 70px;
 }
 
+#contentSearch{
+  width:100%;
+  float:left;
+}
 
 div#content {
   width: 100%;
@@ -81,6 +97,7 @@ nav {
   width: 1000px;
   background-color: #ffffff;
   z-index: 5px;
+  clear:both;
 }
 nav li {
   width:15%;
@@ -111,6 +128,7 @@ footer {
   display:block;
   clear: both;
   padding:0;
+  margin:0;
   background-color: #a8eda8
 }
 
@@ -171,4 +189,29 @@ footer {
   text-decoration: none;
   border: thin solid gray;
   background: linear-gradient(#f7f7f7, #dedede);
+}
+
+.icon{
+  width:0.6em;
+}
+
+.inlineBlock{
+  display:inline-block;
+}
+input[type=text] {
+  padding: 0.4em;
+  border-radius: 20px; 
+  border:2px solid black;
+}
+
+#contactHanlin{
+  width:450px;
+}
+
+.hotImg{
+  background-color:lightgray;
+  width:15%;
+  display:inline-block;
+  vertical-align: top;
+  margin:0;
 }

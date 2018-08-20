@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block css %}<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">{% endblock %}
+{% block content %}
+{% if plantForm.instance.id %}
+<h2>修改商品</h2>
+<form id="form" method="post" action="{% url 'shop:plantUpdate' branch.id plant.id %}">
+{% else %}
+<h2>新增商品</h2>
+<form id="form" method="post" action="{% url 'shop:plantCreate' branch.id %}">
+{% endif %}
+{% csrf_token %}
+{{ plantForm.as_p }}
+<input class="btn" type="submit" value="送出">
+<a class="btn" href="{% url 'shop:shop' %}">放棄</a>
+</form>
+{% endblock %}

@@ -17,7 +17,14 @@
 
 <div id="contentRight">
 {% for branch, plants in branches.items %}
-  <div class="titleImg"><P>{{ branch.branchName }}</P><a href="{% url 'shop:branchRead' branch.id %}"><img src="/static/main/img/{{ branch.url }}"></a></div> 
+  <div class="titleImg"><P>
+  {{ branch.branchName }}
+      <form class="inlineBlock" method="post" action="{% url 'shop:branchDelete' branch.id %}">
+        {% csrf_token %}
+        <input class="icon deleteConfirm" id='delete' type="image" src="{% static 'main/img/trash-alt-solid.svg' %}">
+      </form>
+  </P>
+  <a href="{% url 'shop:branchRead' branch.id %}"><img src="/static/main/img/{{ branch.url }}"></a></div> 
 {% endfor %}
 <div class="titleImg"><P>New</P><a class='newItem' href="{% url 'shop:branchCreate' %}">+</a></div>
 </div>

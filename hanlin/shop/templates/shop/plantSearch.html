@@ -3,16 +3,18 @@
 {% block css %}<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}"> {% endblock %}
 {% block content %}
 <div id="contentSearch">
-<h2 class="four">熱門商品</h2>
-{% for plant in plants %}
-  <div class="hotImg"><P>{{ plant.plantName }}</P><a href="{% url 'shop:plantRead' plant.branch.id plant.id %}"><img src="/static/main/img/{{ plant.url }}"></a>
+<h2 class="four">搜尋結果</h2>
+{% if not plants %}
+  <p>查無資料</p>
+{% else %}
+  {% for plant in plants %}
+  <div class="plantImg"><P>{{ plant.plantName }}</P><a href="{% url 'shop:plantRead' plant.branch.id plant.id %}"><img src="/static/main/img/{{ plant.url }}"></a>
     <p>
     $ {{ plant.price }}<br>
     庫存 {{ plant.inventory }}
     </p>  
   </div> 
 {% endfor %}
-
-<h2 class="four">特價商品<span>5折起</span></h2>
+{% endif %}
 </div>
 {% endblock %}

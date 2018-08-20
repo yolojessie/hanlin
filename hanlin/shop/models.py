@@ -17,6 +17,7 @@ class Plant(models.Model):
     inventory = models.IntegerField()
     pubDateTime = models.DateTimeField(auto_now_add=True)
     url = models.CharField(max_length=128)
+    hot = models.BooleanField()
     
     def __str__(self):
         return self.branch.branchName +'-'+ self.plantName

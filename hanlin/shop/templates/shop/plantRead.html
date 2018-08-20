@@ -5,7 +5,7 @@
 {% include 'main/messages.html' %}
 <aside>
 <ul>
-    <li class="classheader">{{ branch.branchName }}</li>
+    <li class="classheader"><a href="{% url 'shop:branchRead' branch.id %}">{{ branch.branchName }}</a></li>
 {% for p in plants %}    
     <li><a href="{% url 'shop:plantRead' branch.id p.id %}">{{ p.plantName }}</a></li>
 {% endfor %}
@@ -15,12 +15,21 @@
 <div id="contentRight">
     
     <div id="bigplantImg"><img src="/static/main/img/{{ plant.url }}"></div>
+    <div id="info">
     <p>
-    <h3>{{ plant.plantName }}</h3>
+    <h3>{{ plant.plantName }}<a class="edit" href="{% url 'shop:plantUpdate' branch.id plant.id %}">
+    <img class="icon" src="{% static 'main/img/edit-regular.svg' %}"></a>
+     <form class="inlineBlock" method="post" action="{% url 'shop:plantDelete' plant.id %}">
+        {% csrf_token %}
+        <input class="icon deleteConfirm" id='delete' type="image" src="{% static 'main/img/trash-alt-solid.svg' %}">
+      </form>
+    </h3>
     $ {{ plant.price }}<br>
     庫存 {{ plant.inventory }}<br>
     編碼 {{ plant.code }}
-    </p>  
+    
+    </p> 
+    </div> 
 </div>
 
 
