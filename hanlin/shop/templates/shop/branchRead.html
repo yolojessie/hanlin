@@ -5,7 +5,11 @@
 {% include 'main/messages.html' %}
 <aside>
 <ul>
-    <li class="classheader">{{ branch.branchName }}<a class="edit" href="{% url 'shop:branchUpdate' branch.id %}"><img class="icon" src="{% static 'main/img/edit-regular.svg' %}"></a></li>
+    <li class="classheader">{{ branch.branchName }}
+    {% if user.is_superuser %}
+    <a class="edit" href="{% url 'shop:branchUpdate' branch.id %}"><img class="icon" src="{% static 'main/img/edit-regular.svg' %}"></a>
+    {% endif %}
+    </li>
 {% for plant in plants %}    
     <li><a href="{% url 'shop:plantRead' branch.id plant.id %}">{{ plant.plantName }}</a></li>
 {% endfor %}
@@ -21,7 +25,9 @@
     </p>  
   </div> 
 {% endfor %}
+{% if user.is_superuser %}
 <div class="plantImg"><P>New</P><a class='newItem' href="{% url 'shop:plantCreate' branch.id %}">+</a></div>
+{% endif %}
 </div>
 
 

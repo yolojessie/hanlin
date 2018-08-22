@@ -19,14 +19,18 @@
 {% for branch, plants in branches.items %}
   <div class="titleImg"><P>
   {{ branch.branchName }}
+      {% if user.is_superuser %}
       <form class="inlineBlock" method="post" action="{% url 'shop:branchDelete' branch.id %}">
         {% csrf_token %}
         <input class="icon deleteConfirm" id='delete' type="image" src="{% static 'main/img/trash-alt-solid.svg' %}">
       </form>
+      {% endif %}
   </P>
   <a href="{% url 'shop:branchRead' branch.id %}"><img src="/static/main/img/{{ branch.url }}"></a></div> 
 {% endfor %}
+{% if user.is_superuser %}
 <div class="titleImg"><P>New</P><a class='newItem' href="{% url 'shop:branchCreate' %}">+</a></div>
+{% endif %}
 </div>
 
 

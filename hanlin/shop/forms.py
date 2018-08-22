@@ -23,6 +23,6 @@ class PlantForm(forms.ModelForm):
     
     class Meta:
         model = Plant
-        exclude = ['branch', 'pubDateTime']
+        exclude = ['branch', 'pubDateTime','discount','newPrice','buyes']
         
         

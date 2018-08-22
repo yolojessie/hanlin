@@ -3,6 +3,8 @@ from django.contrib import messages
 from shop.models import Branch, Plant
 from shop.forms import BranchForm,PlantForm
 from django.db.models.query_utils import Q
+from django.contrib.auth.decorators import login_required
+from main.views import admin_required
 
 
 # Create your views here.
@@ -14,7 +16,7 @@ def shop(request):
     context = {'branches':branches}
     
     return render(request, 'shop/shop.html',context)
-
+@admin_required
 def branchCreate(request):
     template = 'shop/branchCreateUpdate.html'
     if request.method == 'GET':
@@ -45,7 +47,7 @@ def plantRead(request, plantId, branchId):
         'branch':branch
     }
     return render(request, 'shop/plantRead.html', context)
-
+@admin_required
 def plantCreate(request, branchId):
     template = 'shop/plantCreateUpdate.html'
     branch = get_object_or_404(Branch, id=branchId)
@@ -62,6 +64,7 @@ def plantCreate(request, branchId):
     messages.success(request, '商品已新增')
     return redirect('shop:shop')
 
+@admin_required
 def branchUpdate(request, branchId):
     branch = get_object_or_404(Branch, id=branchId )
     template = 'shop/branchCreateUpdate.html'
@@ -77,6 +80,7 @@ def branchUpdate(request, branchId):
     messages.success(request, '類別名修改成功')
     return redirect('shop:branchRead', branchId=branchId)
 
+@admin_required
 def plantUpdate(request, branchId, plantId):
     branch = get_object_or_404(Branch, id=branchId)
     plant = get_object_or_404(Plant, id=plantId)
@@ -94,7 +98,7 @@ def plantUpdate(request, branchId, plantId):
     messages.success(request, '商品已修改')
     return redirect('shop:plantRead', branchId=branchId, plantId=plantId)
 
-
+@admin_required
 def branchDelete(request, branchId):
     if request.method == 'GET':
         return shop(request)
@@ -105,6 +109,7 @@ def branchDelete(request, branchId):
     messages.success(request, '類別已刪除')
     return redirect('shop:shop')
 
+@admin_required
 def plantDelete(request, plantId):
     if request.method == 'GET':
         return shop(request)
@@ -120,3 +125,40 @@ def plantSearch(request):
     plants = Plant.objects.filter(Q(plantName__icontains=searchTerm) | Q(code__icontains=searchTerm))
     context = {'plants':plants, 'searchTerm':searchTerm}
     return render(request, 'shop/plantSearch.html', context)
+
+@admin_required
+def plantDiscount(request, plantId, branchId):
+    branch = get_object_or_404(Branch, id=branchId)
+    discount = int(request.GET.get('discount'))
+    plant = get_object_or_404(Plant, id=plantId)
+    
+    if not discount:
+        discountPrice = 0
+    else:
+        plant.discount = discount
+        discountPrice = plant.price*discount/10
+        plant.newPrice = discountPrice
+        plant.save()
+   
+    
+    context = {
+        'plants':Plant.objects.filter(branch=branch),
+        'plant':plant,
+        'branch':branch,
+    }
+
+    return render(request, 'shop/plantRead.html', context)
+
+@login_required
+def plantBuy(request, branchId, plantId):
+    plant = get_object_or_404(Plant, id=plantId)
+    if request.user not in plant.buyes.all():
+        plant.buyes.add(request.user)
+        plant.inventory = plant.inventory-1
+        plant.save()
+    else:
+        plant.buyes.remove(request.user)
+        plant.inventory = plant.inventory+1
+        plant.save()
+        
+    return plantRead(request, plantId, branchId)

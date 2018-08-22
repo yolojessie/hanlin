@@ -60,8 +60,12 @@ div #contentRight .titleImg img{
 
 
 #form{
-  text-align:center;
+  display:block;
+  width:100%;
+  float:left;
+  text-align:left;
   margin:0;
+  padding:0;
 }
 
 .plantImg {
@@ -72,6 +76,7 @@ div #contentRight .titleImg img{
 }
 
 #bigplantImg {
+  dsiplay:inline-block;
   float:left;
   vetical-align:middle;
   width:40%;
@@ -84,7 +89,9 @@ div #contentRight .titleImg img{
 }
 
 #info {
-  dsiplay:block;
+  dsiplay:inline-block;
+  float:left;
+  text-align:left;
   width:60%;
 }
 
@@ -96,4 +103,10 @@ div #contentRight .titleImg img{
 
 #delete{
   background:url("main/static/main/img/trash-alt-solid.svg");
+}
+
+#discNum{
+  margin:0;
+  padding:0;
+  width:100%;
 }

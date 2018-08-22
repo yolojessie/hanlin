@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="register">
+<h2 class="four">註冊</h2>
+<form  method="post" action="{% url 'account:register' %}">
+  {% csrf_token %}
+  {{ userForm.as_p }}
+  <input class="btn" type="submit" value="送出">
+</form>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.db import models
-
+from account.models import User
 # Create your models here.
 
 class Branch(models.Model):
@@ -18,6 +18,9 @@ class Plant(models.Model):
     pubDateTime = models.DateTimeField(auto_now_add=True)
     url = models.CharField(max_length=128)
     hot = models.BooleanField()
+    discount = models.IntegerField()
+    newPrice = models.IntegerField()
+    buyes = models.ManyToManyField(User)
     
     def __str__(self):
         return self.branch.branchName +'-'+ self.plantName

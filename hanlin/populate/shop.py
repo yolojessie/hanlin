@@ -1,4 +1,5 @@
 from populate import base
+from account.models import User
 from shop.models import Branch, Plant
 
 
@@ -24,6 +25,9 @@ def populate():
             plt.price=10
             plt.inventory=10
             plt.url=plant
+            plt.hot=False
+            plt.discount=0
+            plt.newPrice=0
             plt.save()
             j+=1
             

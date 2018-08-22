@@ -198,11 +198,18 @@ footer {
 .inlineBlock{
   display:inline-block;
 }
-input[type=text] {
+input[type=text], input[type=url], input[type=password],input[type=number]{
   padding: 0.4em;
   border-radius: 20px; 
   border:2px solid black;
 }
+
+input[type=number]{
+  padding: 0.1em;
+  width:3em;
+  
+  color:red;
+} 
 
 #contactHanlin{
   width:450px;
@@ -214,4 +221,13 @@ input[type=text] {
   display:inline-block;
   vertical-align: top;
   margin:0;
+}
+
+div #register{
+  display:block;
+  width:100%;
+  float:left;
+  text-align:left;
+  margin:0;
+  padding:0;
 }
