@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% include 'main/messages.html' %}
+<h2 class="four">最新消息</h2>
+<div class="tableDiv">
+<table class="table table-striped table-hover">
+<tr>
+<th>日期</th>
+<th>事項</th>
+</tr>
+{% for article in articles %}
+<tr>
+<td>{{ article.pubDateTime }}</td>
+<td><a href="{% url 'new:articleRead' article.id %}">{{　article.title }}</a>
+{% if user.is_superuser %}
+      <form class="inlineBlock" method="post" action="{% url 'new:articleDelete' article.id %}">
+      {% csrf_token %}
+      <input class="btn deleteConfirm" type="submit" value="刪除">
+      </form>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+<tr>
+<td colspan="2"><a href="{% url 'new:articleCreate' %}"><img class="icon" src="{% static 'main/img/plus-circle-solid.svg' %}"></a></td>
+</tr>
+</table>
+</div>
+{% endblock %}

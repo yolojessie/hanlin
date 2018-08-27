@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<h2 class="four">購買商品明細</h2>
+
+<ul class="detail">
+<li><p>品名 : {{ plant.plantName }}</p></li>  
+{% if plant.newPrice %}
+<li><p><b>原價</b> $ <del>{{ plant.price }}</del></p></li>
+<li><p><b>優惠價</b> $ {{ plant.newPrice }}</p></li>
+{% else %}
+<li><p>$ {{ plant.price }}</p></li>
+{% endif %}
+<li><p>編碼 {{ plant.code }}</p></li>      
+<li><p>總計:NT$ {{ plant.newPrice }}元</p></li>     
+</ul>
+
+<h2 class="four">訂購人</h2>
+
+<ul class="detail">
+<li><p>姓名 : {{ user.fullName }}</p></li>  
+<li><p>住址 : {{ user.address }}</p></li>
+<li><p>信箱 : {{ user.email }}</p></li>          
+</ul>
+
+<h2 class="four">收件人</h2>
+<form method="post" action="{% url 'shop:plantBuy' plant.id %}">
+  {% csrf_token %}
+  <p>{{ orderForm.name.label }}：{{ orderForm.name }}</p>
+  <p>{{ orderForm.email.label }}：{{ orderForm.email }}</p>
+  <p>{{ orderForm.address.label }}：{{ orderForm.address }}</p>
+  <p>{{ orderForm.phone.label }}：{{ orderForm.phone }}</p>
+  <div class="pay">{{ orderForm.payMethod.label }}：{{ orderForm.payMethod }}</div>
+  <input class="btn" type="submit" value="確認">
+</form>
+
+
+{% endblock %}

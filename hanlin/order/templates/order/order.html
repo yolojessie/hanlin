@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% include 'main/messages.html' %}
+<h2 class="four">訂單資訊</h2>
+<div class="tableDiv">
+<table class="table table-striped table-hover">
+<tr>
+<th>日期</th>
+<th>商品</th>
+<th>顧客</th>
+<th>電話</th>
+<th>總價</th>
+</tr>
+{% if user.is_superuser %}
+{% for order in orders %}
+<tr>
+<td>{{ order.pubDateTime }}</td>
+<td><a href="{% url 'shop:plantRead' order.plant.branch.id order.plant.id %}">{{　order.plantName }}</a></td>
+<td>{{　order.name }}</td>
+<td>{{ order.phone }}</td>
+<td>{{ order.totalPrice }}
+{% if user.is_superuser %}
+      <form class="inlineBlock" method="post" action="{% url 'order:orderDelete' order.id %}">
+      {% csrf_token %}
+      <input class="btn deleteConfirm" type="submit" value="刪除">
+      </form>
+{% endif %} 
+</td>
+</tr>
+{% endfor %}
+{% else %}
+{% for order in userOrders %}
+<tr>
+<td>{{ order.pubDateTime }}</td>
+<td><a href="/">{{　order.plantName }}</a>
+</td>
+<td>{{　order.name }}</td>
+<td>{{ order.phone }}</td>
+<td>{{ order.totalPrice }}
+{% if user.is_superuser %}
+      <form class="inlineBlock" method="post" action="{% url 'order:orderDelete' order.id %}">
+      {% csrf_token %}
+      <input class="btn deleteConfirm" type="submit" value="刪除">
+      </form>
+{% endif %} 
+</td>
+</tr>
+{% endfor %}
+{% endif %}
+</table>
+</div>
+{% endblock %}

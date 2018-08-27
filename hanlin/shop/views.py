@@ -1,14 +1,18 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from shop.models import Branch, Plant
-from shop.forms import BranchForm,PlantForm
-from django.db.models.query_utils import Q
 from django.contrib.auth.decorators import login_required
+from django.db.models.query_utils import Q
+from django.shortcuts import render, redirect, get_object_or_404
+
+from account.forms import UserForm
+from account.models import User
 from main.views import admin_required
+from shop.forms import BranchForm, PlantForm
+from order.forms import OrderForm
+from shop.models import Branch, Plant
+
 
 
 # Create your views here.
-
 def shop(request):
     branches = {}
     for branch in Branch.objects.all():
@@ -150,15 +154,43 @@ def plantDiscount(request, plantId, branchId):
     return render(request, 'shop/plantRead.html', context)
 
 @login_required
-def plantBuy(request, branchId, plantId):
+def plantBuy(request, plantId):
+    template = 'shop/buyInfo.html'
     plant = get_object_or_404(Plant, id=plantId)
+    context = {}
+    if request.method == 'GET':
+        context.update({'plant':plant,'orderForm':OrderForm(initial={'name':request.user.fullName, 
+                                                                     'email':request.user.email, 
+                                                                     'address':request.user.address, 
+                                                                     'plantName':plant.plantName})})
+        return render(request, template, context)
+
+    # POST
+    orderForm = OrderForm(request.POST)
+    print(orderForm)
+    if not orderForm.is_valid():
+        return render(request, template, {'plant':plant,'orderForm':orderForm})
+    if plant.newPrice:
+        realPrice = plant.newPrice
+    else:
+        realPrice = plant.price
+    order = orderForm.save(commit=False)
+    order.plant = plant
+    order.customer = request.user
+    order.totalPrice = realPrice
+    order.save()
+    messages.success(request, '購買成功')
     if request.user not in plant.buyes.all():
         plant.buyes.add(request.user)
         plant.inventory = plant.inventory-1
         plant.save()
-    else:
-        plant.buyes.remove(request.user)
-        plant.inventory = plant.inventory+1
-        plant.save()
-        
-    return plantRead(request, plantId, branchId)
+    return redirect('shop/shop.html')
+
+   
+#     else:
+#         plant.buyes.remove(request.user)
+#         plant.inventory = plant.inventory+1
+#         plant.save()
+    #TODO:完成OderForm的對應購買成工頁面以及查看訂單   
+    
+

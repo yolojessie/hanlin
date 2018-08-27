@@ -75,8 +75,8 @@ img {
 
 div#content {
   width: 100%;
-  height: 20em;
   margin: 0 auto;
+  padding:5px;
 }
 
 div#content h2{
@@ -100,7 +100,7 @@ nav {
   clear:both;
 }
 nav li {
-  width:15%;
+  width:12%;
 }
 
 nav ul {
@@ -109,13 +109,13 @@ nav ul {
   padding: 0;
 }
 
- li {
+nav li ,footer li{
   list-style: none;
   display:inline-block;
   border-left:2px solid black;
 }
 
- li a {
+nav li a ,footer li a{
   color: black;
   padding:10px;
   text-decoration: none;
@@ -123,6 +123,25 @@ nav ul {
   display:block;
 }
 
+.detail{
+  display:block;
+  width:100%;
+  margin:0.5em;
+}
+
+.detail li{
+  list-style: none;
+  text-align:left;
+}
+
+.detail li p{
+  color: black;
+  padding:5px;
+  text-decoration: none;
+  font-size:1.3em;
+  border-bottom:2px solid lightgray;
+  text-align:center;
+}
 
 footer {
   display:block;
@@ -192,13 +211,13 @@ footer {
 }
 
 .icon{
-  width:0.6em;
+  width:1em;
 }
 
 .inlineBlock{
   display:inline-block;
 }
-input[type=text], input[type=url], input[type=password],input[type=number]{
+input[type=text], input[type=url], input[type=password],input[type=number],input[type=email]{
   padding: 0.4em;
   border-radius: 20px; 
   border:2px solid black;
@@ -220,7 +239,7 @@ input[type=number]{
   width:15%;
   display:inline-block;
   vertical-align: top;
-  margin:0;
+  margin:5px;
 }
 
 div #register{
@@ -230,4 +249,74 @@ div #register{
   text-align:left;
   margin:0;
   padding:0;
+}
+
+#buyBtn {
+  font-family: Arial;
+  width: 50%;
+  display: inline-block;
+  color: #ffffff;
+  font-size: 2em;
+  padding: 0.1em 1em;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  background: linear-gradient(#ffce00, #ff0000);
+}
+/* Table */
+.table {
+  margin: 0 auto;
+  width: 90%;
+  border-collapse: collapse;
+  height:100%;
+}
+
+.table th {
+  font-size: 1.1em;
+  padding: 10px 0 10px 10px;
+  text-align: center;
+  background-color: rgba(0, 154, 136, 0.51);
+  border-bottom: 1px solid black;
+}
+
+.table td {
+  color: #222222;
+  background-color: #ffffff;
+  padding: 12px 0 12px 10px;
+}
+
+.table-hover tr:hover td {
+  background-color: rgba(190, 255, 190, 0.67);
+}
+
+.tableDiv {
+  
+}
+
+.clear{
+  clear:both;
+}
+
+#noneDecration{
+  text-decoration:none;
+  color:black;
+}
+
+div .pay ul {
+    overflow-x:hidden;
+    white-space:nowrap;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
+div .pay li {
+    display:inline;
+    list-style: none;
+}
+
+div .pay label {
+    display: inline-block;
+    vertical-align: top;
 }

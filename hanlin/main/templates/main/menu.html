@@ -1,7 +1,8 @@
  <ul>
       <li><a href="{% url 'main:main' %}">首頁</a></li>
       <li><a href="{% url 'shop:shop' %}">商品</a></li>
-      <li><a href="{% url 'main:news' %}">最新消息</a></li>
+      <li><a href="{% url 'order:order' %}">訂單</a></li>
+      <li><a href="{% url 'new:new' %}">最新消息</a></li>
       <li><a href="{% url 'main:contact' %}">聯絡我們</a></li>
       {% if user.is_authenticated %}
       <li><a href="{% url 'account:logout' %}">登出 ({{ user.username }})</a></li>

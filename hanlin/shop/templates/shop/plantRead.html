@@ -17,7 +17,7 @@
     <div id="bigplantImg"><img src="/static/main/img/{{ plant.url }}"></div>
     <div id="info">
     <p>
-    <h3>{{ plant.plantName }}
+    <h1>{{ plant.plantName }}
     {% if user.is_superuser %}
     <a class="edit" href="{% url 'shop:plantUpdate' branch.id plant.id %}">
     <img class="icon" src="{% static 'main/img/edit-regular.svg' %}"></a>
@@ -26,7 +26,7 @@
         <input class="icon deleteConfirm" id='delete' type="image" src="{% static 'main/img/trash-alt-solid.svg' %}">
       </form>
     {% endif %}
-    </h3>
+    </h1>
     {% if plant.newPrice %}
     <b>原價</b> $ <del>{{ plant.price }}</del><br>
     <b>優惠價</b> $ {{ plant.newPrice }}
@@ -44,9 +44,9 @@
     庫存 {{ plant.inventory }}<br>
     編碼 {{ plant.code }}<br>
     已有 {{ plant.buyes.count }} 個人買過
-    <form id="discNum" action="{% url 'shop:plantBuy' branch.id plant.id %}">
+    <form id="discNum" action="{% url 'shop:plantBuy' plant.id %}">
         {% csrf_token %}
-        <input class="btn" type="submit" value="BUY">
+        <input id="buyBtn" type="submit" value="BUY">
     </form>
     
     </p> 

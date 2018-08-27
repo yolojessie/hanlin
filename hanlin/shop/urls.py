@@ -15,5 +15,5 @@ urlpatterns = [
     path('plantDelete/<int:plantId>', views.plantDelete, name='plantDelete'),
     path('plantSearch/', views.plantSearch, name='plantSearch'),
     path('plantDiscount/<int:branchId>/<int:plantId>', views.plantDiscount, name='plantDiscount'),
-    path('plantBuy/<int:branchId>/<int:plantId>', views.plantBuy, name='plantBuy'),
+    path('plantBuy/<int:plantId>', views.plantBuy, name='plantBuy'),
 ]

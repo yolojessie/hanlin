@@ -27,3 +27,4 @@ class Plant(models.Model):
     
     class Meta:
         ordering = ['-pubDateTime']
+        
