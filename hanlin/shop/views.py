@@ -64,6 +64,8 @@ def plantCreate(request, branchId):
         return render(request, template, {'plantForm':plantForm})
     plant = plantForm.save(commit=False)
     plant.branch = branch
+    plant.discount = 0
+    plant.newPrice = 0
     plant.save()
     messages.success(request, '商品已新增')
     return redirect('shop:shop')
