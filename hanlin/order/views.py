@@ -17,8 +17,11 @@ def orderDelete(request, orderId):
         return order(request)
     #POST
     order = get_object_or_404(Order, id=orderId)
+    order.plant.buyes.remove(order.customer)
+    order.plant.inventory = order.plant.inventory+1
+    order.plant.save()
     order.delete()
     messages.success(request, '訂單已取消')
     return redirect('order:order')
-#TODO:刪除訂單要把庫存加回去
+
 

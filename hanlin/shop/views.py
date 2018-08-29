@@ -186,11 +186,6 @@ def plantBuy(request, plantId):
         plant.save()
     return redirect('shop/shop.html')
 
-   
-#     else:
-#         plant.buyes.remove(request.user)
-#         plant.inventory = plant.inventory+1
-#         plant.save()
-    #TODO:完成OderForm的對應購買成工頁面以及查看訂單   
+    
     
 

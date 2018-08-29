@@ -16,7 +16,7 @@
 {% for order in orders %}
 <tr>
 <td>{{ order.pubDateTime }}</td>
-<td><a href="{% url 'shop:plantRead' order.plant.branch.id order.plant.id %}">{{　order.plantName }}</a></td>
+<td><a href="{% url 'shop:plantRead' order.plant.branch.id order.plant.id %}">{{　order.plant.plantName }}</a></td>
 <td>{{　order.name }}</td>
 <td>{{ order.phone }}</td>
 <td>{{ order.totalPrice }}
@@ -33,7 +33,7 @@
 {% for order in userOrders %}
 <tr>
 <td>{{ order.pubDateTime }}</td>
-<td><a href="/">{{　order.plantName }}</a>
+<td><a href="/">{{　order.plant.plantName }}</a>
 </td>
 <td>{{　order.name }}</td>
 <td>{{ order.phone }}</td>
