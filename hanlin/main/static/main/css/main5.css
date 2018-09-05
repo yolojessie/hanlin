@@ -256,7 +256,7 @@ input[type=number]{
   margin-bottom:0;
 }
 
-div.hotImg p#hotName{
+div.hotImg p.hotName{
   font-size:1.6em;
   margin-top:0.6em;
 }
