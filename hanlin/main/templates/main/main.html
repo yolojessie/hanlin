@@ -1,12 +1,14 @@
 {% extends 'main/base.html' %}
 {% load staticfiles %}
-{% block css %}<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}"> {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'shop/css/shop.css' %}"> 
+{% endblock %}
 {% block content %}
 {% include 'main/messages.html' %}
 <div id="contentSearch">
 <h2 class="four">熱門商品</h2>
 {% for plant in plants %}
-  <div class="hotImg"><P>{{ plant.plantName }}</P><a href="{% url 'shop:plantRead' plant.branch.id plant.id %}"><img src="/static/main/img/{{ plant.url }}"></a>
+  <div class="hotImg four"><P id="hotName"><b>{{ plant.plantName }}</b></P><a href="{% url 'shop:plantRead' plant.branch.id plant.id %}"><img src="/static/main/img/{{ plant.url }}"></a>
     <p>
     $ {{ plant.price }}<br>
     庫存 {{ plant.inventory }}
@@ -16,7 +18,7 @@
 
 <h2 class="four">特價商品<span>5折起</span></h2>
 {% for plant in dicPlants %}
-  <div class="hotImg"><P>{{ plant.plantName }}</P><a href="{% url 'shop:plantRead' plant.branch.id plant.id %}"><img src="/static/main/img/{{ plant.url }}"></a>
+  <div class="hotImg four"><P id="hotName"><b>{{ plant.plantName }}</b></P><a href="{% url 'shop:plantRead' plant.branch.id plant.id %}"><img src="/static/main/img/{{ plant.url }}"></a>
     <p>
     $ <del>{{ plant.price }}</del><br>
      $ {{ plant.newPrice }}<br>

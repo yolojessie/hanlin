@@ -1,13 +1,15 @@
 {% extends 'main/base.html' %}
 {% load staticfiles %}
 {% block content %}
+<div id="newTitle">
 <h1>{{ article.title }}</h1>
 {% if user.is_superuser %}
    <a class="btn inlineBlock" href="{% url 'new:articleUpdate' article.id %}">修改</a>
 {% endif %}
 <h3>發布時間 : {{ article.pubDateTime }}</h3>
-<p>
+</div>
+<div id="newReadBorder">
 {{ article.content|linebreaks }}
-</p>
+</div>
 
 {% endblock %}

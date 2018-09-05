@@ -75,9 +75,18 @@ div #contentRight .titleImg img{
 
 .plantImg {
   width:20%;
+  min-width: 135px;
   display:inline-block;
   vertical-align: top;
-  margin:0;
+  margin:0.3em;
+  height:14em;
+}
+.plantImg p{
+  line-height:1.1em;
+}
+.plantImg:hover,.titleImg img:hover{
+  box-shadow: 0 0 10px #555555;
+  transition: all 1s ease 0s;
 }
 
 #bigplantImg {
@@ -118,4 +127,18 @@ div #contentRight .titleImg img{
   margin:0;
   padding:0;
   width:100%;
+}
+
+
+@media screen and (max-width: 570px) {
+  div#info{
+    float:right;
+    text-align:center;
+    margin:0;
+    width:40%;
+  }
+  #bigplantImg img{
+    width:150px;
+    box-shadow:10px 10px 10px #555555;
+  }
 }
